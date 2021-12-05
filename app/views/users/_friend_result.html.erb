@@ -1,0 +1,22 @@
+<div class="results-block">
+    <%= render 'layouts/error' %>
+</div>
+<% if @friends %>
+    <div class="card card-header results-block">
+    <% @friends.each do |friend| %>
+        <div class="each-friend">
+            <strong>Name: </strong> <%= friend.full_name %>,
+            <strong>Email: </strong> <%= friend.email %>
+            <strong></strong> <%= link_to 'View Profile',user_path(friend), class: "btn btn-warning btn-sm"%>
+            <% if current_user.friends.where(id: friend.id).exists? %>
+                <span class="badge badge-secondar"><strong>(This User is your friend)</strong></span>
+            <% else %>
+                 <%= link_to 'Follow Friend?', friendships_path(friend: friend), 
+                class: "btn btn-warning btn-sm",method: "post" %>
+            <% end %>
+           
+            <br>
+        </div>
+    <% end %>
+    </div>
+<% end %>

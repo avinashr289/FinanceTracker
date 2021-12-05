@@ -1,0 +1,27 @@
+<h1>My Portfolio</h1>
+
+<div class="search-area">
+    <%= form_tag search_stock_path,remote: true,:method=>"get" do %>
+
+    <div class="row form-group">
+        <div class="col-sm-9 no-right-padding">
+            <%= text_field_tag :stock,params[:stock],
+            placeholder: "Search a stock symbol..Eg: AAPL,MSFT etc ",class: "form-control form-control-lg" %>
+        </div>
+
+        <div class="col-sm-3 no-left-padding">
+            <%= button_tag :type => "submit" ,class: "btn btn-success" do %>
+                <%= fa_icon 'search 2x' %>
+            <% end %>   
+        </div>
+
+    </div>
+
+    <% end %>
+</div>
+
+<div id="results">
+    
+</div>
+
+<%= render 'stocks/list' %>
